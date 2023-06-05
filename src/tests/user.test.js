@@ -38,6 +38,12 @@ test('GET /users y retorne 200', async () => {
     expect(res.body).toHaveLength(2);
 });
 
+test('GET /user/id y retonra 200', async () => {
+    const res = await request(app)
+        .get(`/users/${userId}`)
+        .set('Authorization', `Bearer ${token}`)
+    expect(res.status).toBe(200);
+});
 
 test('PUT /users/id retorna 200', async () => {
     const newPhone = { phone: "87654321"};

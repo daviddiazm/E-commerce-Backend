@@ -45,6 +45,13 @@ test('GET /products retorna 200', async () => {
     expect(res.status).toBe(200);
 });
 
+test('GET /products/id y retonra 200', async () => {
+    const res = await request(app)
+        .get(`/products/${productId}`)
+        .set('Authorization', `Bearer ${token}`)
+    expect(res.status).toBe(200);
+});
+
 test('PUT /products/id retorna 200', async () => {
     const newTitle = { title: "AirMac" }
     const res = await request(app)

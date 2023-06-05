@@ -32,6 +32,13 @@ test('GET /categories retorna 200', async () => {
     expect(res.status).toBe(200);
 });
 
+test('GET /categories/id y retonra 200', async () => {
+    const res = await request(app)
+        .get(`/categories/${categoryId}`)
+        .set('Authorization', `Bearer ${token}`)
+    expect(res.status).toBe(200);
+});
+
 test('PUT /categories/id retorna 200', async () => {
     const newName = { name: "Home" }
     const res = await request(app)
@@ -39,6 +46,7 @@ test('PUT /categories/id retorna 200', async () => {
         .send(newName)
         .set('Authorization', `Bearer ${token}`);
     expect(res.status).toBe(200);
+    expect(res.body.name).toBe(newName.name);
 });
 
 test('DELETE /categories/id retorna 204', async () => {
